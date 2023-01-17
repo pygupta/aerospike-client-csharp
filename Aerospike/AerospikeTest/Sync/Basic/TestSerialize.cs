@@ -1,5 +1,5 @@
 ﻿/* 
- * Copyright 2012-2018 Aerospike, Inc.
+ * Copyright 2012-2023 Aerospike, Inc.
  *
  * Portions may be licensed to Aerospike, Inc. under one or more contributor
  * license agreements.
@@ -87,7 +87,7 @@ namespace Aerospike.Test
 			list.Add("string2");
 			list.Add("string3");
 
-			Bin bin = new Bin(binName, (object)list);
+			Bin bin = new Bin(binName, list);
 
 			client.Put(null, key, bin);
 

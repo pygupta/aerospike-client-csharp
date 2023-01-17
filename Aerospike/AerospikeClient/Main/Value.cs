@@ -1,5 +1,5 @@
 /* 
- * Copyright 2012-2022 Aerospike, Inc.
+ * Copyright 2012-2023 Aerospike, Inc.
  *
  * Portions may be licensed to Aerospike, Inc. under one or more contributor
  * license agreements.
@@ -1800,6 +1800,7 @@ namespace Aerospike.Client
 
 			public static byte[] Serialize(object val)
 			{
+#if BINARY_FORMATTER
 				if (DisableSerializer)
 				{
 					throw new AerospikeException("Object serializer has been disabled");
@@ -1811,7 +1812,10 @@ namespace Aerospike.Client
 					formatter.Serialize(ms, val);
 					return ms.ToArray();
 				}
-			}
+#else
+                throw new AerospikeException("Object serializer has been disabled");
+#endif
+            }
 
 			public override int Write(byte[] buffer, int offset)
 			{

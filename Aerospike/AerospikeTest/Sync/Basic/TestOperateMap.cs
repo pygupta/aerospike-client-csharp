@@ -1,5 +1,5 @@
 ﻿/* 
- * Copyright 2012-2020 Aerospike, Inc.
+ * Copyright 2012-2023 Aerospike, Inc.
  *
  * Portions may be licensed to Aerospike, Inc. under one or more contributor
  * license agreements.
@@ -1053,7 +1053,7 @@ namespace Aerospike.Test
 			m2[Value.Get("key21")] = Value.Get(3);
 			m2[Value.Get("key22")] = Value.Get(5);
 
-			IDictionary<Value,Value> inputMap = new Dictionary<Value,Value>();
+			IDictionary inputMap = new Dictionary<Value, Value>();
 			inputMap[Value.Get("key1")] = Value.Get(m1);
 			inputMap[Value.Get("key2")] = Value.Get(m2);
 

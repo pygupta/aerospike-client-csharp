@@ -1,5 +1,5 @@
 /* 
- * Copyright 2012-2022 Aerospike, Inc.
+ * Copyright 2012-2023 Aerospike, Inc.
  *
  * Portions may be licensed to Aerospike, Inc. under one or more contributor
  * license agreements.
@@ -197,6 +197,7 @@ namespace Aerospike.Client
                 return null;
             }
 
+#if BINARY_FORMATTER
             if (Value.DisableDeserializer)
             {
                 throw new AerospikeException.Serialize("Object deserializer has been disabled");
@@ -216,6 +217,9 @@ namespace Aerospike.Client
             {
                 throw new AerospikeException.Serialize(e);
             }
+#else
+            throw new AerospikeException.Serialize("Object deserializer has been disabled");
+#endif
         }
 
         public static object BytesToGeoJSON(byte[] buf, int offset, int len)
