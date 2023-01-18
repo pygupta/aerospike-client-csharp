@@ -29,7 +29,8 @@ namespace Aerospike.Admin
 		private AerospikeClient client;
 		private BindingList<UserRow> users;
 		private BindingSource bindingSourceUsers;
-		private ContextMenu rightClickMenuUsers;
+		private 
+			ContextMenuStrip rightClickMenuUsers;
 		private string userNameFilter;
 
 		public UsersControl()
@@ -74,24 +75,24 @@ namespace Aerospike.Admin
 
 		private void InitRightClickMenu(bool admin)
 		{
-			rightClickMenuUsers = new ContextMenu();
+			rightClickMenuUsers = new ContextMenuStrip();
 
 			if (admin)
 			{
-				MenuItem drop = new MenuItem("Drop User");
+				ToolStripMenuItem drop = new ToolStripMenuItem("Drop User");
 				drop.Click += new System.EventHandler(this.DropUserClicked);
-				rightClickMenuUsers.MenuItems.Add(drop);
+				rightClickMenuUsers.Items.Add(drop);
 			}
 
-			MenuItem editPass = new MenuItem("Change Password");
+            ToolStripMenuItem editPass = new ToolStripMenuItem("Change Password");
 			editPass.Click += new System.EventHandler(this.ChangePasswordClicked);
-			rightClickMenuUsers.MenuItems.Add(editPass);
+			rightClickMenuUsers.Items.Add(editPass);
 
 			if (admin)
 			{
-				MenuItem editRole = new MenuItem("Edit Roles");
+                ToolStripMenuItem editRole = new ToolStripMenuItem("Edit Roles");
 				editRole.Click += new System.EventHandler(this.EditRolesClicked);
-				rightClickMenuUsers.MenuItems.Add(editRole);
+				rightClickMenuUsers.Items.Add(editRole);
 			}
 		}
 

@@ -18,10 +18,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aerospike.Client;
-
-#if !NETFRAMEWORK
 using Microsoft.Extensions.Configuration;
-#endif
 
 namespace Aerospike.Test
 {
@@ -49,30 +46,7 @@ namespace Aerospike.Test
 		{
 			Log.Disable();
 
-#if NETFRAMEWORK
-            port = Properties.Settings.Default.Port;
-			clusterName = Properties.Settings.Default.ClusterName.Trim();
-			user = Properties.Settings.Default.User.Trim();
-			password = Properties.Settings.Default.Password.Trim();
-			ns = Properties.Settings.Default.Namespace.Trim();
-			set = Properties.Settings.Default.Set.Trim();
-			authMode = (AuthMode)Enum.Parse(typeof(AuthMode), Properties.Settings.Default.AuthMode.Trim(), true);
-
-			if (Properties.Settings.Default.TlsEnable)
-			{
-				tlsName = Properties.Settings.Default.TlsName.Trim();
-				tlsPolicy = new TlsPolicy(
-					Properties.Settings.Default.TlsProtocols,
-					Properties.Settings.Default.TlsRevoke,
-					Properties.Settings.Default.TlsClientCertFile,
-					Properties.Settings.Default.TlsLoginOnly
-					);
-			}
-
-			hosts = Host.ParseHosts(Properties.Settings.Default.Host, tlsName, port);
-#else
-            var builder = new ConfigurationBuilder()
-                .AddJsonFile("settings.json", optional: true, reloadOnChange: true);
+            var builder = new ConfigurationBuilder().AddJsonFile("settings.json", optional: true, reloadOnChange: true);
             IConfigurationRoot section = builder.Build();
 
             port = int.Parse(section.GetSection("Port").Value);
@@ -97,7 +71,6 @@ namespace Aerospike.Test
             }
 
             hosts = Host.ParseHosts(section.GetSection("Host").Value, tlsName, port);
-#endif
         }
 
         public void Connect()
@@ -125,12 +98,12 @@ namespace Aerospike.Test
 			{
 				SetServerSpecific();
 			}
-			catch (Exception e)
+			catch
 			{
 				client.Close();
 				client = null;
-				throw e;
-			}
+                throw;
+            }
 		}
 
 		private void ConnectAsync()

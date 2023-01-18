@@ -1,4 +1,4 @@
-/* 
+﻿/* 
  * Copyright 2012-2018 Aerospike, Inc.
  *
  * Portions may be licensed to Aerospike, Inc. under one or more contributor
@@ -30,6 +30,7 @@ namespace Aerospike.Admin
 		static void Main()
 		{
 			Application.EnableVisualStyles();
+			Application.SetHighDpiMode(HighDpiMode.SystemAware);
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new LoginForm());
 		}

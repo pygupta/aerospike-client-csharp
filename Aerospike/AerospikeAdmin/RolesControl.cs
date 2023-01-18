@@ -34,7 +34,7 @@ namespace Aerospike.Admin
 		private BindingList<RoleRow> roles;
 		private BindingSource bindingSourceRoles;
 		private BindingSource bindingSourcePrivs;
-		private ContextMenu rightClickMenuRoles;
+		private ContextMenuStrip rightClickMenuRoles;
 		private List<string> rolesFilter;
 
 		public RolesControl()
@@ -86,17 +86,17 @@ namespace Aerospike.Admin
 
 		private void InitRightClickMenu(bool admin)
 		{
-			rightClickMenuRoles = new ContextMenu();
+			rightClickMenuRoles = new ContextMenuStrip();
 
 			if (admin)
 			{
-				MenuItem drop = new MenuItem("Drop Role");
+				ToolStripMenuItem drop = new ToolStripMenuItem("Drop Role");
 				drop.Click += new System.EventHandler(this.DropClicked);
-				rightClickMenuRoles.MenuItems.Add(drop);
+				rightClickMenuRoles.Items.Add(drop);
 
-				MenuItem edit = new MenuItem("Edit Role");
+                ToolStripMenuItem edit = new ToolStripMenuItem("Edit Role");
 				edit.Click += new System.EventHandler(this.EditClicked);
-				rightClickMenuRoles.MenuItems.Add(edit);
+				rightClickMenuRoles.Items.Add(edit);
 			}
 		}
 
