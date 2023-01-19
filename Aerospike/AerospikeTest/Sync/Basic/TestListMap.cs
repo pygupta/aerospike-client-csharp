@@ -1,5 +1,5 @@
 ﻿/* 
- * Copyright 2012-2019 Aerospike, Inc.
+ * Copyright 2012-2023 Aerospike, Inc.
  *
  * Portions may be licensed to Aerospike, Inc. under one or more contributor
  * license agreements.
@@ -123,8 +123,10 @@ namespace Aerospike.Test
 			map["key4"] = list;
 			map["key5"] = true;
 			map["key6"] = false;
+#if BINARY_FORMATTER
 			map["key7"] = dt;
 			map["key8"] = dc;
+#endif
 
             Bin bin = new Bin(args.GetBinName("mapbin2"), map);
 			client.Put(null, key, bin);
@@ -132,8 +134,12 @@ namespace Aerospike.Test
 			Record record = client.Get(null, key, bin.name);
 			IDictionary receivedMap = (IDictionary) record.GetValue(bin.name);
 
+#if BINARY_FORMATTER
 			Assert.AreEqual(8, receivedMap.Count);
-            Assert.AreEqual("string1", receivedMap["key1"]);
+#else
+            Assert.AreEqual(6, receivedMap.Count);
+#endif
+			Assert.AreEqual("string1", receivedMap["key1"]);
 			// Server convert numbers to long, so must expect long.
 			Assert.AreEqual(2L, receivedMap["key2"]);
 			CollectionAssert.AreEqual(blob, (byte[])receivedMap["key3"]);
@@ -147,8 +153,10 @@ namespace Aerospike.Test
 
 			Assert.AreEqual(true, receivedMap["key5"]);
 			Assert.AreEqual(false, receivedMap["key6"]);
+#if BINARY_FORMATTER
 			Assert.AreEqual(dt, receivedMap["key7"]);
 			Assert.AreEqual(dc, receivedMap["key8"]);
+#endif
 		}
 
 		[TestMethod]

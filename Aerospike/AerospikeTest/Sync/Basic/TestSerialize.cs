@@ -28,6 +28,7 @@ namespace Aerospike.Test
 	{
 		private static readonly string binName = args.GetBinName("serialbin");
 
+#if BINARY_FORMATTER
 		[TestMethod]
 		public void SerializeArray()
 		{
@@ -73,6 +74,7 @@ namespace Aerospike.Test
 				}
 			}
 		}
+#endif
 
 		[TestMethod]
 		public void SerializeList()
@@ -120,6 +122,7 @@ namespace Aerospike.Test
 			}
 		}
 
+#if BINARY_FORMATTER
 		[TestMethod]
 		public void SerializeComplex()
 		{
@@ -174,5 +177,6 @@ namespace Aerospike.Test
 			Assert.AreEqual(exp[2], rec[2]);
 			CollectionAssert.AreEqual((IList)exp["list"], (IList)rec["list"]);
 		}
+#endif
 	}
 }
