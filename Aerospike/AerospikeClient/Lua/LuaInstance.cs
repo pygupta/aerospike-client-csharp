@@ -82,7 +82,7 @@ namespace Aerospike.Client
 
 		private void LoadSystemPackage(Assembly assembly, string packageName)
 		{
-			string resourcePath = "Aerospike.Client.Resources." + packageName + ".lua";
+			string resourcePath = "Aerospike.Client.LuaResources." + packageName + ".lua";
 			LoadPackageFromResource(assembly, resourcePath, packageName);
 		}
 

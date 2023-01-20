@@ -33,7 +33,7 @@ namespace Aerospike.Test
 		public static void Prepare(TestContext testContext)
 		{
 			Assembly assembly = Assembly.GetExecutingAssembly();
-			RegisterTask rtask = client.Register(null, assembly, "Aerospike.Test.Resources.record_example.lua", "record_example.lua", Language.LUA);
+			RegisterTask rtask = client.Register(null, assembly, "Aerospike.Test.LuaResources.record_example.lua", "record_example.lua", Language.LUA);
 			rtask.Wait();
 
 			Policy policy = new Policy();

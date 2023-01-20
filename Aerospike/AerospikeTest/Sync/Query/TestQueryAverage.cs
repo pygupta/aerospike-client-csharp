@@ -35,7 +35,7 @@ namespace Aerospike.Test
 		public static void Prepare(TestContext testContext)
 		{
 			Assembly assembly = Assembly.GetExecutingAssembly();
-			RegisterTask task = client.Register(null, assembly, "Aerospike.Test.Resources.average_example.lua", "average_example.lua", Language.LUA);
+			RegisterTask task = client.Register(null, assembly, "Aerospike.Test.LuaResources.average_example.lua", "average_example.lua", Language.LUA);
 			task.Wait();
 
 			Policy policy = new Policy();
@@ -75,7 +75,7 @@ namespace Aerospike.Test
 			stmt.SetNamespace(args.ns);
 			stmt.SetSetName(args.set);
 			stmt.SetFilter(Filter.Range(binName, 0, 1000));
-			stmt.SetAggregateFunction(Assembly.GetExecutingAssembly(), "Aerospike.Test.Resources.average_example.lua", "average_example", "average");
+			stmt.SetAggregateFunction(Assembly.GetExecutingAssembly(), "Aerospike.Test.LuaResources.average_example.lua", "average_example", "average");
 
 			ResultSet rs = client.QueryAggregate(null, stmt);
 

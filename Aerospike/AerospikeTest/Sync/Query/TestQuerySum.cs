@@ -32,7 +32,7 @@ namespace Aerospike.Test
 		public static void Prepare(TestContext testContext)
 		{
 			Assembly assembly = Assembly.GetExecutingAssembly();
-			RegisterTask task = client.Register(null, assembly, "Aerospike.Test.Resources.sum_example.lua", "sum_example.lua", Language.LUA);
+			RegisterTask task = client.Register(null, assembly, "Aerospike.Test.LuaResources.sum_example.lua", "sum_example.lua", Language.LUA);
 			task.Wait();
 
 			Policy policy = new Policy();
@@ -76,7 +76,7 @@ namespace Aerospike.Test
 			stmt.SetSetName(args.set);
 			stmt.SetBinNames(binName);
 			stmt.SetFilter(Filter.Range(binName, begin, end));
-			stmt.SetAggregateFunction(Assembly.GetExecutingAssembly(), "Aerospike.Test.Resources.sum_example.lua", "sum_example", "sum_single_bin", Value.Get(binName));
+			stmt.SetAggregateFunction(Assembly.GetExecutingAssembly(), "Aerospike.Test.LuaResources.sum_example.lua", "sum_example", "sum_single_bin", Value.Get(binName));
 
 			ResultSet rs = client.QueryAggregate(null, stmt);
 
@@ -119,7 +119,7 @@ namespace Aerospike.Test
 				BinNames = new string[] { binName },
 				Filter = Filter.Range(binName, 4, 7)
 			};
-			stmt.SetAggregateFunction(Assembly.GetExecutingAssembly(), "Aerospike.Test.Resources.sum_example.lua", "sum_example", "sum_single_bin", Value.Get(binName));
+			stmt.SetAggregateFunction(Assembly.GetExecutingAssembly(), "Aerospike.Test.LuaResources.sum_example.lua", "sum_example", "sum_single_bin", Value.Get(binName));
 
 			QueryPolicy qp = new QueryPolicy()
 			{

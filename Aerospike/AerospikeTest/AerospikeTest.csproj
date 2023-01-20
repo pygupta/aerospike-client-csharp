@@ -34,28 +34,18 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
-  <ItemGroup>
-	<None Remove="Resources\average_example.lua" />
-	<None Remove="Resources\filter_example.lua" />
-	<None Remove="Resources\record_example.lua" />
-	<None Remove="Resources\sum_example.lua" />
-  </ItemGroup>
 
   <ItemGroup>
-	<None Update="Properties\Settings.settings">
-	  <Generator>SettingsSingleFileGenerator</Generator>
-	  <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-	</None>
 	<None Update="settings.json">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</None>
   </ItemGroup>
 
   <ItemGroup>
-  	<EmbeddedResource Include="Resources\average_example.lua" />
-  	<EmbeddedResource Include="Resources\filter_example.lua" />
-  	<EmbeddedResource Include="Resources\record_example.lua" />
-  	<EmbeddedResource Include="Resources\sum_example.lua" />
+  	<EmbeddedResource Include="LuaResources\average_example.lua" />
+  	<EmbeddedResource Include="LuaResources\filter_example.lua" />
+  	<EmbeddedResource Include="LuaResources\record_example.lua" />
+  	<EmbeddedResource Include="LuaResources\sum_example.lua" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,26 +65,6 @@
   <ItemGroup>
   	<Folder Include="Async\" />
   	<Folder Include="Sync\" />
-  </ItemGroup>
-  
-  <ItemGroup>
-  	<Compile Update="Properties\Resources.Designer.cs">
-  		<DesignTime>True</DesignTime>
-  		<AutoGen>True</AutoGen>
-  		<DependentUpon>Resources.resx</DependentUpon>
-  	</Compile>
-  	<Compile Update="Properties\Settings.Designer.cs">
-  	  <DesignTimeSharedInput>True</DesignTimeSharedInput>
-  	  <AutoGen>True</AutoGen>
-  	  <DependentUpon>Settings.settings</DependentUpon>
-  	</Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-  	<EmbeddedResource Update="Properties\Resources.resx">
-  		<Generator>ResXFileCodeGenerator</Generator>
-  		<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-  	</EmbeddedResource>
   </ItemGroup>
 
 </Project>

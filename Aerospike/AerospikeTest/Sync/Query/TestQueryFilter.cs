@@ -34,7 +34,7 @@ namespace Aerospike.Test
 		public static void Prepare(TestContext testContext)
 		{
 			Assembly assembly = Assembly.GetExecutingAssembly();
-			RegisterTask rtask = client.Register(null, assembly, "Aerospike.Test.Resources.filter_example.lua", "filter_example.lua", Language.LUA);
+			RegisterTask rtask = client.Register(null, assembly, "Aerospike.Test.LuaResources.filter_example.lua", "filter_example.lua", Language.LUA);
 			rtask.Wait();
 
 			Policy policy = new Policy();
@@ -82,7 +82,7 @@ namespace Aerospike.Test
 			stmt.SetNamespace(args.ns);
 			stmt.SetSetName(args.set);
 			stmt.SetFilter(Filter.Equal(binName, nameFilter));
-			stmt.SetAggregateFunction(Assembly.GetExecutingAssembly(), "Aerospike.Test.Resources.filter_example.lua", "filter_example", "profile_filter", Value.Get(passFilter));
+			stmt.SetAggregateFunction(Assembly.GetExecutingAssembly(), "Aerospike.Test.LuaResources.filter_example.lua", "filter_example", "profile_filter", Value.Get(passFilter));
 
 			// passFilter will be applied in filter_example.lua.
 			ResultSet rs = client.QueryAggregate(null, stmt);
