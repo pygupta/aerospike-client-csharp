@@ -1,5 +1,5 @@
 ﻿/* 
- * Copyright 2012-2022 Aerospike, Inc.
+ * Copyright 2012-2023 Aerospike, Inc.
  *
  * Portions may be licensed to Aerospike, Inc. under one or more contributor
  * license agreements.
@@ -191,6 +191,7 @@ namespace Aerospike.Test
 			Assert.AreEqual(value, (string)obj);
 		}
 
+#if BINARY_FORMATTER
 		[TestMethod]
 		public void WriteBlobUsingUdf()
 		{
@@ -211,6 +212,7 @@ namespace Aerospike.Test
 			byte[] received = (byte[])client.Execute(null, key, "record_example", "readBin", Value.Get(binName));
 			CollectionAssert.AreEqual(blob, received);
 		}
+#endif
 
 		[TestMethod]
 		public void BatchUDF()
