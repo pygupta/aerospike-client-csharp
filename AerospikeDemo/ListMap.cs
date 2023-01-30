@@ -1,5 +1,5 @@
 /* 
- * Copyright 2012-2018 Aerospike, Inc.
+ * Copyright 2012-2023 Aerospike, Inc.
  *
  * Portions may be licensed to Aerospike, Inc. under one or more contributor
  * license agreements.
@@ -37,8 +37,11 @@ namespace Aerospike.Demo
 			TestMapStrings(client, args);
 			TestMapComplex(client, args);
 			TestListMapCombined(client, args);
+
+#if BINARY_FORMATTER
 			TestListCompoundBlob(client, args);
 			TestListCompoundList(client, args);
+#endif
 		}
 
 		/// <summary>
@@ -227,6 +230,7 @@ namespace Aerospike.Demo
 			console.Info("Read/Write List/HashMap successful");
 		}
 
+#if BINARY_FORMATTER
 		/// <summary>
 		/// Write/Read list of compound objects using blob for entire list 
 		/// which is slow becauses it uses the default serializer.
@@ -283,6 +287,7 @@ namespace Aerospike.Demo
 
 			console.Info("Read/Write ArrayList<CompoundObject> successful.");
 		}
+#endif
 
 		private static void ValidateSize(int expected, int received)
 		{

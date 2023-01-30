@@ -1,5 +1,5 @@
 /* 
- * Copyright 2012-2018 Aerospike, Inc.
+ * Copyright 2012-2023 Aerospike, Inc.
  *
  * Portions may be licensed to Aerospike, Inc. under one or more contributor
  * license agreements.
@@ -31,11 +31,14 @@ namespace Aerospike.Demo
 		/// </summary>
 		public override void RunExample(AerospikeClient client, Arguments args)
 		{
+#if BINARY_FORMATTER
 			TestArray(client, args);
 			TestList(client, args);
 			TestComplex(client, args);
+#endif
 		}
 
+#if BINARY_FORMATTER
 		/// <summary>
 		/// Write array of integers using standard C# serializer.
 		/// </summary>
@@ -231,5 +234,6 @@ namespace Aerospike.Demo
 			}
 			console.Info("Read complex object successful.");
 		}
+#endif
 	}
 }
