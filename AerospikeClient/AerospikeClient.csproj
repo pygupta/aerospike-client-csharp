@@ -17,6 +17,7 @@
 	<OutputType>Library</OutputType>
 	<StartupObject />
 	<RootNamespace>Aerospike.Client</RootNamespace>
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
