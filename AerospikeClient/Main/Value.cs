@@ -36,9 +36,8 @@ namespace Aerospike.Client
 
 		/// <summary>
 		/// Should BinaryFormatter be disabled. If true, an exception will be thrown when BinaryFormatter
-		/// is used. BinaryFormatter serialization is triggered when a bin constructed by
-		/// <see cref="Bin.Bin(string, object)"/> or <see cref="Bin.AsBlob(string, object)"/> 
-		/// is used in a write command with an unrecognized object type.
+		/// is used. BinaryFormatter has been removed from the client by default, so this field is no
+		/// longer relevant.
 		/// </summary>
 		public static bool DisableSerializer = false;
 
@@ -47,7 +46,8 @@ namespace Aerospike.Client
 		/// a default object deserialization is attempted. Default object serialization is triggered
 		/// when serialized data is read/parsed from the server. DisableDeserializer is separate from
 		/// DisableSerializer because there may be cases when no new serialization is allowed, but
-		/// existing serialized objects need to be supported.
+		/// existing serialized objects need to be supported. BinaryFormatter has been removed from
+		/// the client by default, so this field is no longer relevant.
 		/// </summary>
 		public static bool DisableDeserializer = false;
 
