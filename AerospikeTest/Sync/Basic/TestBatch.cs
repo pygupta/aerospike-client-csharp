@@ -1,5 +1,5 @@
 ﻿/* 
- * Copyright 2012-2022 Aerospike, Inc.
+ * Copyright 2012-2023 Aerospike, Inc.
  *
  * Portions may be licensed to Aerospike, Inc. under one or more contributor
  * license agreements.
@@ -145,7 +145,8 @@ namespace Aerospike.Test
 
 				AssertRecordFound(key, record);
 				Assert.AreNotEqual(0, record.generation);
-				Assert.AreNotEqual(0, record.expiration);
+				// ttl can be zero if server default-ttl = 0.
+				//Assert.AreNotEqual(0, record.expiration);
 			}
 		}
 
@@ -376,7 +377,8 @@ namespace Aerospike.Test
 			BatchRead batch = list[i];
 			AssertRecordFound(batch.key, batch.record);
 			Assert.AreNotEqual(0, batch.record.generation);
-			Assert.AreNotEqual(0, batch.record.expiration);
+            // ttl can be zero if server default-ttl = 0.
+            // Assert.AreNotEqual(0, batch.record.expiration);
 		}
 	}
 }
