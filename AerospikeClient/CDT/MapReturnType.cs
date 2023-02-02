@@ -1,5 +1,5 @@
 /* 
- * Copyright 2012-2022 Aerospike, Inc.
+ * Copyright 2012-2023 Aerospike, Inc.
  *
  * Portions may be licensed to Aerospike, Inc. under one or more contributor
  * license agreements.
@@ -96,12 +96,22 @@ namespace Aerospike.Client
 		EXISTS = 13,
 
 		/// <summary>
-		/// Invert meaning of map command and return values.  For example:
-		/// <code>
-		/// MapOperation.RemoveByKeyRange(binName, keyBegin, keyEnd, MapReturnType.KEY | MapReturnType.INVERTED);
-		/// </code>
-		/// With the INVERTED flag enabled, the keys outside of the specified key range will be removed and returned.
+		/// Return an unordered map.
 		/// </summary>
-		INVERTED = 0x10000
+		UNORDERED_MAP = 16,
+
+		/// <summary>
+		/// Return an ordered map.
+		/// </summary>
+		ORDERED_MAP = 17,
+
+		/// <summary>
+        /// Invert meaning of map command and return values.  For example:
+        /// <code>
+        /// MapOperation.RemoveByKeyRange(binName, keyBegin, keyEnd, MapReturnType.KEY | MapReturnType.INVERTED);
+        /// </code>
+        /// With the INVERTED flag enabled, the keys outside of the specified key range will be removed and returned.
+        /// </summary>
+        INVERTED = 0x10000
 	}
 }
